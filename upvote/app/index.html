@@ -13,23 +13,25 @@
     <h2 class="title has-text-centered dividing-header">UpVote!</h2>
 
     <div class="section">
-      <article class="media">
+      <article v-for="submission in submissions" v-bind:key="submission.id" class="media">
         <figure class="media-left">
-          <img class="image is-64x64" src="../public/images/submissions/image-yellow.png">
+          <img class="image is-64x64" v-bind:src="submission.submissionImage">
         </figure>
         <div class="media-content">
           <div class="content">
             <p>
               <strong>
-                <a href="#" class="has-text-info">Yellow Pail</a>
-                <span class="tag is-small">#4</span>
+                <a v-bind:href="submission.url" class="has-text-info">
+                  {{ submission.title }}
+                </a>
+                <span class="tag is-small">#{{ submission.id }}</span>
               </strong>
               <br>
-              On-demand sand castle construction expertise.
+              {{ submission.description }}
               <br>
               <small class="is-size-7">
                 Submitted by:
-                <img class="image is-24x24" src="../public/images/avatars/daniel.jpg">
+                <img class="image is-24x24" v-bind:src="submission.avatar">
               </small>
             </p>
           </div>
@@ -37,7 +39,7 @@
         <div class="media-right">
           <span class="icon is-small">
             <i class="fa fa-chevron-up"></i>
-            <strong class="has-text-info">10</strong>
+            <strong class="has-text-info">{{ submission.votes }}</strong>
           </span>
         </div>
       </article>
