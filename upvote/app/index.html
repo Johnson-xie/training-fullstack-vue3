@@ -13,7 +13,11 @@
     <h2 class="title has-text-centered dividing-header">UpVote!</h2>
 
     <div class="section">
-      <article v-for="submission in submissions" v-bind:key="submission.id" class="media">
+      <article
+        v-for="submission in sortedSubmissions"
+        v-bind:key="submission.id"
+        class="media"
+        v-bind:class="{ 'blue-border': submission.votes >= 20 }">
         <figure class="media-left">
           <img class="image is-64x64" v-bind:src="submission.submissionImage">
         </figure>
@@ -37,7 +41,7 @@
           </div>
         </div>
         <div class="media-right">
-          <span class="icon is-small">
+          <span class="icon is-small" v-on:click="upvote(submission.id)">
             <i class="fa fa-chevron-up"></i>
             <strong class="has-text-info">{{ submission.votes }}</strong>
           </span>
